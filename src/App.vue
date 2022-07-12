@@ -1,18 +1,18 @@
 <template>
   <div id="app">
     
-   <OldItem />
+   <FormApplication />
   </div>
 </template>
 
 <script>
 
-import OldItem from "./components/OldItem.vue";
+import FormApplication from "./components/FormApplication.vue";
 
 export default {
   name: "App",
   components: {
-    OldItem
+    FormApplication
 
   },
   
