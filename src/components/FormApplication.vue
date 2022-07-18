@@ -1,232 +1,97 @@
 <template>
-  <section>
-    <div class="container">
-      <div class="forms">
-        <div class="form login">
-          <span class="title">SignUp</span>
+  <FormulateForm
+    v-model="formDetails"
+    @submit="formSubmit"
+    class="form-container"
+  >
+    <h1 class="form-title">Student Registration Form</h1>
+    <FormulateInput
+      name="name"
+      type="text"
+      label="Name"
+      validation="required"
+      help="Your name must begin with capital letter"
+    />
+    <FormulateInput
+      name="email"
+      type="email"
+      label="Email"
+      validation="^required|email"
+      autocomplete="off"
+    />
 
-          <form action="#">
-            <div class="input-field">
-              <input type="text" placeholder="Enter your name" required />
-              <i class="uil uil-user"></i>
-            </div>
-            <div class="input-field">
-              <input type="text" placeholder="Enter your email" required />
-              <i class="uil uil-envelope icon"></i>
-            </div>
-            <div class="input-field">
-              <input
-                type="password"
-                class="password"
-                placeholder="Create a password"
-                required
-              />
-              <i class="uil uil-lock icon"></i>
-            </div>
+    <FormulateInput
+      type="password"
+      name="password"
+      label="Password"
+      validation="^required|min:6,length"
+      help="Your password must be at least 6 characters long."
+      autocomplete="off"
+    />
+    <FormulateInput
+      type="number"
+      name="Course number"
+      label="Course Number"
+      validation="^required|min:4,length"
+    />
+    <FormulateInput
+      name="terms"
+      type="checkbox"
+      label="I accept, and have inputted the correct details."
+      validation="accepted"
+    />
 
-            <div class="checkbox-text">
-              <div class="checkbox-content">
-                <input type="checkbox" id="termCon" />
-                <label for="termCon" class="text"
-                  >I accepted all terms and conditions</label
-                >
-              </div>
-            </div>
-
-            <div class="input-field button">
-              <input type="button" value="Signup" />
-            </div>
-          </form>
-
-          <div class="login-signup">
-            <span class="text"
-              >Already a member?
-              <a href="#" class="text signup-link">Login Now</a>
-            </span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    <FormulateInput type="submit" label="Register" />
+    <h2>Form Details Box</h2>
+    <p>{{ formDetails }}</p>
+  </FormulateForm>
 </template>
-<style>
-/* ===== Google Font Import - Poformsins ===== */
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
 
+
+<script>
+export default {
+  name: "Signup",
+  components: {},
+  data: () => ({
+    formDetails: {},
+  }),
+  methods: {
+    formSubmit() {
+      alert("Welcome! You have sucessfully signed up to your account");
+    },
+  },
+};
+</script>
+<style >
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap");
 * {
-  margin: 0;
-  padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: "Work Sans", sans-serif;
 }
 
-body {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #4070f4;
+.border {
+  border-color: #3d9421;
 }
 
-.container {
-  position: relative;
-  max-width: 430px;
-  width: 100%;
-  background: #fff;
-  border-radius: 10px;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  margin: 0 20px;
+.form-title {
+  font-size: 20px;
+  font-weight: bolder;
+  line-height: 70px;
 }
 
-.container .forms {
-  display: flex;
-  align-items: center;
-  height: 540px;
-  width: 200%;
-  transition: height 0.2s ease;
-}
-
-.container .form {
-  width: 50%;
-  padding: 30px;
-  background-color: #fff;
-  transition: margin-left 0.18s ease;
-}
-
-.container.active .login {
-  margin-left: -50%;
-  opacity: 0;
-  transition: margin-left 0.18s ease, opacity 0.15s ease;
-}
-
-.container .signup {
-  opacity: 0;
-  transition: opacity 0.09s ease;
-}
-.container.active .signup {
-  opacity: 1;
-  transition: opacity 0.2s ease;
-}
-
-.container.active .forms {
-  height: 600px;
-}
-.container .form .title {
-  position: relative;
-  font-size: 27px;
-  font-weight: 600;
-}
-
-.form .title::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 3px;
-  width: 30px;
-  background-color: #4070f4;
-  border-radius: 25px;
-}
-
-.form .input-field {
-  position: relative;
-  height: 50px;
-  width: 100%;
-  margin-top: 30px;
-}
-
-.input-field input {
-  position: absolute;
-  height: 100%;
-  width: 100%;
-  padding: 0 35px;
-  border: none;
-  outline: none;
-  font-size: 16px;
-  border-bottom: 2px solid #ccc;
-  border-top: 2px solid transparent;
-  transition: all 0.2s ease;
-}
-
-.input-field input:is(:focus, :valid) {
-  border-bottom-color: #4070f4;
-}
-
-.input-field i {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  color: #999;
-  font-size: 23px;
-  transition: all 0.2s ease;
-}
-
-.input-field input:is(:focus, :valid) ~ i {
-  color: #4070f4;
-}
-
-.input-field i.icon {
-  left: 0;
-}
-.input-field i.showHidePw {
-  right: 0;
-  cursor: pointer;
-  padding: 10px;
-}
-
-.form .checkbox-text {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-top: 20px;
-}
-
-.checkbox-text .checkbox-content {
-  display: flex;
-  align-items: center;
-}
-
-.checkbox-content input {
-  margin: 0 8px -2px 4px;
-  accent-color: #4070f4;
-}
-
-.form .text {
-  color: #333;
-  font-size: 14px;
-}
-
-.form a.text {
-  color: #4070f4;
-  text-decoration: none;
-}
-.form a:hover {
-  text-decoration: underline;
-}
-
-.form .button {
-  margin-top: 35px;
-}
-
-.form .button input {
-  border: none;
-  color: #fff;
-  font-size: 17px;
-  font-weight: 500;
-  letter-spacing: 1px;
-  border-radius: 6px;
-  background-color: #4070f4;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.button input:hover {
-  background-color: #265df2;
-}
-
-.form .login-signup {
-  margin-top: 30px;
-  text-align: center;
+.form-container {
+  display: grid;
+  background: white;
+  width: 448px;
+  margin: auto;
+  padding: 50px;
+  border-left-width: 4px;
+  border: 1px;
+  border-radius: 0.75rem;
+  --tw-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000),
+    var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
 }
 </style>
+
+
