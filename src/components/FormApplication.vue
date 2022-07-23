@@ -57,7 +57,7 @@ export default {
   }),
   methods: {
     formSubmit() {
-      alert("Welcome! You have sucessfully signed up to your account");
+      alert("Welcome! You have sucessfully Signed up to your account");
     },
   },
 };
